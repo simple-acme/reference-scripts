@@ -2,7 +2,7 @@
 .SYNOPSIS
 Imports a cert from WACS renewal into the Veeam SSL binding
 .DESCRIPTION
-Note that this script is intended to be run via the install script plugin from win-acme via the batch script wrapper.
+Note that this script is intended to be run via the install script plugin from simple-acme via the batch script wrapper.
 
 .PARAMETER NewCertThumbprint
 The exact thumbprint of the cert to be imported. 

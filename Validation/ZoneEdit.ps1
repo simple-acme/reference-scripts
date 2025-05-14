@@ -3,10 +3,10 @@
 Add or remove a DNS TXT record in Zone Edit
 
 .DESCRIPTION
-Note that this script is intended to be run via the install script plugin from win-acme via the batch script wrapper. 
+Note that this script is intended to be run via the install script plugin from simple-acme via the batch script wrapper. 
 As such, we use positional parameters to avoid issues with using a dash in the cmd line. 
 
-This script was copied and modified from the win-acme repository, which was originally copied from the Posh-ACME repository.
+This script was copied and modified from the simple-acme repository, which was originally copied from the Posh-ACME repository.
 Please reference their license terms for use/modification:  https://github.com/rmbolger/Posh-ACME/blob/main/LICENSE
 
 Credit for the original script goes to RMBolger, Thanks!

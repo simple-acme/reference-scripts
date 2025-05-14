@@ -1,17 +1,17 @@
 <#
 .SYNOPSIS
-Imports a cert from win-acme (WACS) renewal into Azure AD Application Proxy for all applications that are using it. You likely want to use a wildcard certificate for this purpose.
+Imports a cert from simple-acme (WACS) renewal into Azure AD Application Proxy for all applications that are using it. You likely want to use a wildcard certificate for this purpose.
 
 .DESCRIPTION
-Note that this script is intended to be run via the install script plugin from win-acme (WACS) via the batch script wrapper. As such, we use positional parameters to avoid issues with using a dash in the cmd line. 
+Note that this script is intended to be run via the install script plugin from simple-acme (WACS) via the batch script wrapper. As such, we use positional parameters to avoid issues with using a dash in the cmd line. 
 
 Proper information should be available here
 
-https://github.com/PKISharp/win-acme/wiki/Install-Script
+https://github.com/simple-acme/simple-acme/wiki/Install-Script
 
 or more generally, here
 
-https://github.com/PKISharp/win-acme/wiki/Example-Scripts
+https://github.com/simple-acme/simple-acme/wiki/Example-Scripts
 
 .PARAMETER PfxPath
 The absolute path to the pfx file that will be uploaded to Azure. Typically use '{CacheFile}'

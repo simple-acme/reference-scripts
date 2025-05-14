@@ -1,6 +1,6 @@
 ﻿<#
 .SYNOPSIS
-Add a win-acme renewal to a Java keystore
+Add a simple-acme renewal to a Java keystore
 
 Sample usage:
 

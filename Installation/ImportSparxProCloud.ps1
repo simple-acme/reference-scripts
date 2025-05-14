@@ -3,15 +3,15 @@
 Imports a cert from WACS renewal into SPARX ProCloud Server.
 
 .DESCRIPTION
-Note that this script is intended to be run via the install script plugin from win-acme via the batch script wrapper. As such, we use positional parameters to avoid issues with using a dash in the cmd line. 
+Note that this script is intended to be run via the install script plugin from simple-acme via the batch script wrapper. As such, we use positional parameters to avoid issues with using a dash in the cmd line. 
 
 Proper information should be available here
 
-https://www.win-acme.com/reference/plugins/installation/script
+https://www.simple-acme.com/reference/plugins/installation/script
 
 or more generally, here
 
-https://github.com/win-acme/win-acme/tree/master/dist/Scripts
+https://github.com/simple-acme/simple-acme/tree/master/dist/Scripts
 
 .PARAMETER NewCertThumbprint
 The exact thumbprint of the cert to be imported.

@@ -2,17 +2,17 @@
 .SYNOPSIS
 Imports a cert from WACS renewal into any WinRM HTTPS listeners. If no HTTPS listener exists, a new one will be created.
 .DESCRIPTION
-Note that this script is intended to be run via the install script plugin from win-acme via the
+Note that this script is intended to be run via the install script plugin from simple-acme via the
 batch script wrapper. As such, we use positional parameters to avoid issues with using a dash in the
 cmd line.
 
 Proper information should be available here
 
-https://github.com/PKISharp/win-acme/wiki/Install-Script
+https://github.com/simple-acme/simple-acme/wiki/Install-Script
 
 or more generally, here
 
-https://github.com/PKISharp/win-acme/wiki/Example-Scripts
+https://github.com/simple-acme/simple-acme/wiki/Example-Scripts
 
 .PARAMETER NewCertThumbprint
 The exact thumbprint of the cert to be imported. The script will copy this cert to the Personal

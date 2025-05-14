@@ -7,11 +7,11 @@ Note that this script is intended to be run via the install script plugin from W
 THIS SCRIPT IS INCOMPLETE AND *mostly* UNTESTED (some modifications have come in from people using it successfully)
 Proper information should be available here
 
-https://github.com/PKISharp/win-acme/wiki/Install-Script
+https://github.com/simple-acme/simple-acme/wiki/Install-Script
 
 or more generally, here
 
-https://github.com/PKISharp/win-acme/wiki/Example-Scripts
+https://github.com/simple-acme/simple-acme/wiki/Example-Scripts
 
 .PARAMETER CertName
 The exact ID of the cert to be imported.

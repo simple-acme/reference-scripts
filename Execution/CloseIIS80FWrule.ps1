@@ -21,9 +21,9 @@ if (-not $rule) {
     }
 }
 
-# Instructions for configuring this script in win-acme:
-# To ensure this script runs as the post-execution step in win-acme, you need to update the settings.json file.
-# 1. Open the 'settings.json' file located in the win-acme configuration folder (usually C:\tools\win-acme\).
+# Instructions for configuring this script in simple-acme:
+# To ensure this script runs as the post-execution step in simple-acme, you need to update the settings.json file.
+# 1. Open the 'settings.json' file located in the simple-acme configuration folder (usually C:\tools\simple-acme\).
 # 2. Locate the "Execution" section and set the DefaultPostExecutionScript path as follows:
-#    "DefaultPostExecutionScript": "C:\\tools\\win-acme\\Scripts\\CloseIIS80FWrule.ps1"
+#    "DefaultPostExecutionScript": "C:\\tools\\simple-acme\\Scripts\\CloseIIS80FWrule.ps1"
 # 3. This script will run after certificate renewal to close port 80 by blocking the HTTP traffic rule.

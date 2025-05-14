@@ -21,9 +21,9 @@ if (-not $rule) {
     }
 }
 
-# Instructions for configuring this script in win-acme:
-# To ensure this script runs as the pre-execution step in win-acme, you need to update the settings.json file.
-# 1. Open the 'settings.json' file located in the win-acme configuration folder (usually C:\tools\win-acme\).
+# Instructions for configuring this script in simple-acme:
+# To ensure this script runs as the pre-execution step in simple-acme, you need to update the settings.json file.
+# 1. Open the 'settings.json' file located in the simple-acme configuration folder (usually C:\tools\simple-acme\).
 # 2. Locate the "Execution" section and set the DefaultPreExecutionScript path as follows:
-#    "DefaultPreExecutionScript": "C:\\tools\\win-acme\\Scripts\\OpenIIS80FWrule.ps1"
+#    "DefaultPreExecutionScript": "C:\\tools\\simple-acme\\Scripts\\OpenIIS80FWrule.ps1"
 # 3. This script will run before certificate renewal to open port 80 for the HTTP-01 challenge.

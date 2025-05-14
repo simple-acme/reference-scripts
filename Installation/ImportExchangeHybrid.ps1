@@ -10,11 +10,11 @@ Documentation referenced from https://technet.microsoft.com/en-us/library/aa9972
 
 Proper information should be available here
 
-https://github.com/PKISharp/win-acme/wiki/Install-Script
+https://github.com/simple-acme/simple-acme/wiki/Install-Script
 
 or more generally, here
 
-https://github.com/PKISharp/win-acme/wiki/Example-Scripts
+https://github.com/simple-acme/simple-acme/wiki/Example-Scripts
 
 .PARAMETER NewCertThumbprint
 The exact thumbprint of the cert to be imported. The script will copy this cert to the Personal store if not already there. 
@@ -101,7 +101,7 @@ if($DebugOn){
 
 If($OSVersion -eq "Windows Server 2008 R2 Standard" -and $PSVersionTable.PSVersion.Major -lt 5)
 {
-	Write-Error "Please upgrade Powershell version. See this URL for details: https://github.com/PKISharp/win-acme/issues/1104"
+	Write-Error "Please upgrade Powershell version. See this URL for details: https://github.com/simple-acme/simple-acme/issues/1104"
 	exit
 }
 
@@ -114,7 +114,7 @@ Write-Host "CacheFile: $CacheFile"
 Write-Host "FriendlyName: $FriendlyName"
 
 # Load Exchange Management shell
-# https://github.com/win-acme/win-acme/issues/1372 
+# https://github.com/simple-acme/simple-acme/issues/1372 
 $ServerFQDN = ([System.Net.Dns]::GetHostByName(($env:computerName))).Hostname
 $ConnectionUri = "http://$ServerFQDN/PowerShell/"
 $Session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri $ConnectionUri
