@@ -107,7 +107,9 @@ if ($CertInStore)
     }
     try 
 	{
-		wmic /namespace:\\root\cimv2\TerminalServices PATH Win32_TSGeneralSetting Set SSLCertificateSHA1Hash="$($CertInStore.Thumbprint)"
+        $TScertHash = Get-WmiObject -Namespace "root\cimv2\TerminalServices" -Class "Win32_TSGeneralSetting"
+        $TScertHash.SSLCertificateSHA1Hash = "$($CertInStore.Thumbprint)"
+        $TScertHash.Put()
         # This method might work, but wmi method is more reliable
         #Set-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -Name SSLCertificateSHA1Hash -Value $CertInStore.Thumbprint -ErrorAction Stop
         "Cert thumbprint set to RDP listener"
