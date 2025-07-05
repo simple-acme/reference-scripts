@@ -18,13 +18,13 @@
     MIT License:
 
     Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation 
-    files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, 
+    files (the â€œSoftwareâ€), to deal in the Software without restriction, including without limitation the rights to use, copy, 
     modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the 
     Software is furnished to do so, subject to the following conditions:
 
     The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-    THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE 
+    THE SOFTWARE IS PROVIDED â€œAS ISâ€, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE 
     WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR 
     COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
     ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
@@ -34,21 +34,21 @@
         
 .PARAMETER ZoneName
     The registerable domain (root hostname) of the hostname being validated. E.g. if the hostname being validated is sub.example.com,
-    then the ZoneName would be example.com. Passed as {ZoneName} from win-acme.
+    then the ZoneName would be example.com. Passed as {ZoneName} from simple-acme.
         
 .PARAMETER RecordName
-    Full TXT record hostname (e.g., _acme-challenge.sub.example.com). Passed as {RecordName} from win-acme.
+    Full TXT record hostname (e.g., _acme-challenge.sub.example.com). Passed as {RecordName} from simple-acme.
         
 .PARAMETER Token
-    Value of the TXT record, e.g. DGyRejmCefe7v4NfDGDKfA. Passed as {Token} from win-acme.
+    Value of the TXT record, e.g. DGyRejmCefe7v4NfDGDKfA. Passed as {Token} from simple-acme.
         
 .PARAMETER APIUsername
     Webnames.ca CORE API username, e.g. myaccount_APIUser_20250611134435_3f533f2b.
         
 .PARAMETER APIKey
-    Webnames.ca CORE API key, e.g. odsifj30$49j4ggg_340fqivm9j. It is recommended to store this in the win-acme secret vault and 
+    Webnames.ca CORE API key, e.g. odsifj30$49j4ggg_340fqivm9j. It is recommended to store this in the simple-acme secret vault and 
     pass it as a replaced argument, e.g. {vault://json/WebnamesAPIKey}. It is also recommended to store the key surrounded with 
-    double-quotes and escaped inline with backticks before any non-alphanumeric characters, to allow win-acme to substitute it 
+    double-quotes and escaped inline with backticks before any non-alphanumeric characters, to allow simple-acme to substitute it 
     without problems. E.g. the key odsifj30$49j4ggg_340fqivm9j should be stored in the secret vault as "odsifj30`$49j4ggg_340fqivm9j".
         
 .PARAMETER APIBaseURLOverride
@@ -57,20 +57,20 @@
 
 .EXAMPLE
     # Direct script execution:
-    PS> & '.\Webnames-win-acme-DNS-TXT.ps1' -Action create `
-                                        -ZoneName wntest202506191536jr.ca `
-                                        -RecordName _acme-challenge.wntest202506191536jr.ca `
-                                        -Token DGyRejmCefe7v4NfDGDKfA `
-                                        -APIUsername myaccount_APIUser_20250611134435_3f533f2b `
-                                        -APIKey "odsifj3049j4ggg_340fqivm9j" `
+    PS> & '.\Webnames.ps1' -Action create `
+                           -ZoneName wntest202506191536jr.ca `
+                           -RecordName _acme-challenge.wntest202506191536jr.ca `
+                           -Token DGyRejmCefe7v4NfDGDKfA `
+                           -APIUsername myaccount_APIUser_20250611134435_3f533f2b `
+                           -APIKey "odsifj3049j4ggg_340fqivm9j" `
 
-    # Execution via win-acme:
+    # Execution via simple-acme or win-acme:
     & .\wacs.exe --accepttos `
                  --target manual `
                  --host sub.wntest202506191536jr.ca `
                  --validationmode dns-01 `
                  --validation script `
-                 --dnsscript ".\Webnames-win-acme-DNS-TXT.ps1" `
+                 --dnsscript ".\Webnames.ps1" `
                  --dnscreatescriptarguments '-Action create -ZoneName {ZoneName} -RecordName {RecordName} -Token {Token} -APIUsername myaccount_APIUser_20250611134435_3f533f2b -APIKey {vault://json/WebnamesAPIKey} --dnsdeletescriptarguments  '-Action delete -ZoneName {ZoneName} -RecordName {RecordName} -Token {Token} -APIUsername myaccount_APIUser_20250611134435_3f533f2b -APIKey {vault://json/WebnamesAPIKey}'
 #>
 
