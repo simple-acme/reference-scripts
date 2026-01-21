@@ -1,9 +1,9 @@
 <#
 .SYNOPSIS
-Imports a cert from win-acme (WACS) renewal into Azure AD Application Proxy for all applications that are using it. You likely want to use a wildcard certificate for this purpose.
+Imports a cert from simple-acme renewal into Azure AD Application Proxy for all applications that are using it. You likely want to use a wildcard certificate for this purpose.
 
 .DESCRIPTION
-Note that this script is intended to be run via the install script plugin from win-acme (WACS) via the batch script wrapper. As such, we use positional parameters to avoid issues with using a dash in the cmd line. 
+Note that this script is intended to be run via the install script plugin from simple-acme via the batch script wrapper. As such, we use positional parameters to avoid issues with using a dash in the cmd line. 
 
 Uses Microsoft Graph API instead of deprecated AzureAD module.
 
