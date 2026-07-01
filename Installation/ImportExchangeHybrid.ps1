@@ -150,6 +150,8 @@ try
         $TLSCertName = "<I>$($TLSCert.Issuer)<S>$($TLSCert.Subject)"
 		Write-Host "Updating 'Outbound to Office 365' send connector"
         Get-SendConnector '*Outbound to Office 365*' | Set-SendConnector -TlsCertificateName $TLSCertName
+		Write-Host "Updating 'Inbound from Office 365' receive connector"
+		Get-ReceiveConnector '*Inbound from Office 365* | Set-ReceiveConnector -TlsCertificateName $TLSCertName
 		Write-Host "Updating 'Default Frontend' receive connector for the current server"
         Get-ReceiveConnector "*Default Frontend $(hostname)*" | Set-ReceiveConnector -TlsCertificateName $TLSCertName
 		Write-Host "Updating Set-HybridConfiguration certificate field"
