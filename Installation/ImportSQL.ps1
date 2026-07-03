@@ -42,7 +42,7 @@ if($CertInStore){
         }
         # The thumbprint must be in all lowercase, otherwise SQL server doesn't seem to accept it?!
         Set-ItemProperty $regKey.PSPath -Name "Certificate" -Value $NewCertThumbprint.ToLowerInvariant()
-        Restart-Service MSSQLSERVER -Force -ErrorAction Stop
+        Restart-Service 'MSSQL*' -Force -ErrorAction Stop
         "Cert thumbprint set to SQL and service restarted"
     }catch{
         "Cert thumbprint was not set successfully"
