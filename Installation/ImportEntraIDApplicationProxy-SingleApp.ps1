@@ -17,7 +17,8 @@ The password for the pfx file. Typically use '{CachePassword}'
 The Entra ID tenant ID (GUID).
 
 .PARAMETER ClientId
-The application (client) ID of the app registration used to authenticate.
+The application (client) ID of the app registration used to authenticate against Entra ID. The app must have the
+'Application.ReadWrite.All' application permission granted and admin-consented in the tenant.
 
 There are 2 suggested ways to do this:
 1. Generate a secret for each proxied application and pass the client ID 
@@ -33,8 +34,12 @@ There are 2 suggested ways to do this:
 .PARAMETER ClientSecret
 Secret used to connect with your ClientId.
 
-.EXAMPLE 
-ImportEntraIDApplicationProxy-SingleApp.ps1 <PfxPath> <CertPass> <ClientId> <ClientSecret>
+.PARAMETER TargetAppId
+The Application (client) ID of the Enterprise Application whose certificate should be updated.
+Find this value in Entra ID > Enterprise Applications > <your app> > Application ID.
+
+.EXAMPLE
+ImportEntraIDApplicationProxy-SingleApp.ps1 <PfxPath> <PfxPass> <TenantId> <ClientId> <ClientSecret> <TargetAppId>
 
 .NOTES
 This uses the Microsoft Graph API instead of the deprecated Azure AD module which no longer works.
@@ -46,14 +51,15 @@ param(
     [Parameter(Position=1,Mandatory=$true)][string]$PfxPass,
     [Parameter(Position=2,Mandatory=$true)][string]$TenantId,
     [Parameter(Position=3,Mandatory=$true)][string]$ClientId,
-    [Parameter(Position=4,Mandatory=$true)][string]$ClientSecret
+    [Parameter(Position=4,Mandatory=$true)][string]$ClientSecret,
+    [Parameter(Position=5,Mandatory=$true)][string]$TargetAppId
 )
 
-# Force pwsh.exe execution, unfortunately
+# Force pwsh.exe execution
 # While so far Powershell Graph modules should work with Windows Powershell 5,
 # in practise they are far less reliable than on Microsoft Powershell.
 #
-# Consider setting PowershellExecutablePath to pwsh.exe in Settings.json
+# Consider setting PowershellExecutablePath to pwsh.exe in settings.json
 if ($PSVersionTable.PSEdition -ne 'Core') {
     & pwsh.exe -NoProfile -ExecutionPolicy Bypass -File $PSCommandPath @args
     exit $LASTEXITCODE
@@ -61,11 +67,11 @@ if ($PSVersionTable.PSEdition -ne 'Core') {
 
 if (!(Get-Command "Connect-MgGraph" -ErrorAction SilentlyContinue)) {
     Throw "Microsoft.Graph.Authentication module, install with 'Install-Module -Name Microsoft.Graph.Authentication -Scope AllUsers'"
-} 
+}
 
 if (!(Get-Command "Get-MgBetaApplication" -ErrorAction SilentlyContinue)) {
-    Throw "Missing Microsoft.Graph.Beta module, install with 'Install-Module -Name Microsoft.Graph.Beta.Applications -Scope AllUsers'"
-} 
+    Throw "Missing Microsoft.Beta.Graph.Applications module, install with 'Install-Module -Name Microsoft.Graph.Beta.Applications -Scope AllUsers'"
+}
 
 # Connect to Microsoft Graph using ClientId/ClientSecret
 $SecureSecret = ConvertTo-SecureString -String $ClientSecret -AsPlainText -Force
@@ -74,7 +80,6 @@ $null = Connect-MgGraph -TenantId $TenantId -ClientSecretCredential $ClientSecre
 
 $app = Get-MgApplication -Filter "AppId eq '$TargetAppId'" -ErrorAction Stop
 if (-not $app) { Throw "No application found with Application ID '$TargetAppId'." }
-
 
 # Read certificate and convert to Base64
 $certBytes = [System.IO.File]::ReadAllBytes($PfxPath)
