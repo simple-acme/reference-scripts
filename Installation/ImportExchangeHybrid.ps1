@@ -105,6 +105,11 @@ If($OSVersion -eq "Windows Server 2008 R2 Standard" -and $PSVersionTable.PSVersi
 	exit
 }
 
+if ([System.Security.Principal.WindowsIdentity]::GetCurrent().Name -eq "NT AUTHORITY\SYSTEM") {
+    Write-Error "Script is executing as SYSTEM, reconfigure the scheduled task to run as a user else this script will fail to run as expected."
+    exit
+}
+
 # Print debugging info to make sure the parameters arrived
 Write-Host "NewCertThumbprint: $NewCertThumbprint"
 Write-Host "ExchangeServices: $ExchangeServices"

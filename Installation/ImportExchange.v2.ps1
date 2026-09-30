@@ -98,10 +98,14 @@ if($DebugOn){
 	$DebugPreference = "Continue"
 }
 
-If($OSVersion -eq "Windows Server 2008 R2 Standard" -and $PSVersionTable.PSVersion.Major -lt 5)
-{
+If($OSVersion -eq "Windows Server 2008 R2 Standard" -and $PSVersionTable.PSVersion.Major -lt 5) {
 	Write-Error "Please upgrade Powershell version. See this URL for details: https://github.com/simple-acme/simple-acme/issues/1104"
 	exit
+}
+
+if ([System.Security.Principal.WindowsIdentity]::GetCurrent().Name -eq "NT AUTHORITY\SYSTEM") {
+    Write-Error "Script is executing as SYSTEM, reconfigure the scheduled task to run as a user else this script will fail to run as expected."
+    exit
 }
 
 # Print debugging info to make sure the parameters arrived
