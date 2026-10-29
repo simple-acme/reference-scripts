@@ -58,9 +58,7 @@ if($CertInStore){
             $CertInStore = Get-ChildItem -Path Cert:\LocalMachine\My -Recurse | Where-Object {$_.thumbprint -eq $NewCertThumbprint} | Select-Object -f 1
         }
 		
-        $TScertHash = Get-WmiObject -Namespace "root\cimv2\TerminalServices" -Class "Win32_TSGeneralSetting"
-        $TScertHash.SSLCertificateSHA1Hash = "$($CertInStore.Thumbprint)"
-        $TScertHash.Put()
+        Set-CimInstance -Namespace "root\cimv2\terminalservices" -Query " select * from Win32_TSGeneralSetting" -Arguments @{SSLCertificateSHA1Hash="$($CertInStore.Thumbprint)"}
         "Cert thumbprint set to RDP listener"
     }catch{
         "Cert thumbprint was not set successfully"
